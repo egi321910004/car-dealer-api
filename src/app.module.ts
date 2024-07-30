@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ProductModule } from './product/product.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://fatednreturn:ag3qn9R7v0I4L586@db-mongodb-sgp1-87822-rentapps-bbb9b6a8.mongo.ondigitalocean.com/fatednreturn?tls=true&authSource=admin&replicaSet=db-mongodb-sgp1-87822-rentapps',
+    ),
+    ProductModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
