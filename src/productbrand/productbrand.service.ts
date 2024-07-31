@@ -22,4 +22,8 @@ export class ProductbrandService {
     );
     return createdProductBrand.save();
   }
+
+  async findAll(): Promise<ProductBrand[]> {
+    return this.productBrandModel.find().exec();
+  }
 }
