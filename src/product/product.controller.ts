@@ -10,7 +10,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { ApiBody, ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from 'src/schemas/product.schema';
@@ -22,6 +22,7 @@ export class ProductController {
 
   @Post()
   @ApiBody({ type: CreateProductDto })
+  @ApiOperation({ summary: 'Create a new product' })
   @ApiResponse({
     status: 201,
     description: 'The product has been successfully created.',
@@ -45,6 +46,7 @@ export class ProductController {
     description: 'Retrieve all products.',
     type: [Product],
   })
+  @ApiOperation({ summary: 'Retrieve all product' })
   @ApiResponse({ status: 404, description: 'Products not found.' })
   async findAll() {
     try {
@@ -60,6 +62,7 @@ export class ProductController {
     description: 'Retrieve a product by ID.',
     type: Product,
   })
+  @ApiOperation({ summary: 'Retrieve product by ID' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   async findOne(@Param('id') id: string) {
     try {
@@ -80,6 +83,7 @@ export class ProductController {
     description: 'The product has been successfully updated.',
     type: Product,
   })
+  @ApiOperation({ summary: 'Update product' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async update(
@@ -109,6 +113,7 @@ export class ProductController {
     description: 'The product has been successfully deleted.',
     type: Product,
   })
+  @ApiOperation({ summary: 'Delete product' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   async remove(@Param('id') id: string) {
     try {
